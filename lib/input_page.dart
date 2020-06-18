@@ -6,8 +6,9 @@ import 'icon_content.dart';
 import 'reusable_card_content.dart';
 
 const double bottomBarHeight = 55.0;
-const int reusableCardBackgroundColour = 0xFF1D1E33;
-const int bottomBarColour = 0xFFEB1555;
+const Color activeReusableCardColour = Color(0xFF1D1E33);
+const Color inactiveReusableCardColour = Color(0xFF111328);
+const Color bottomBarColour = Color(0xFFEB1555);
 
 const bottomBarText = Text(
   'CALCULATE',
@@ -23,6 +24,33 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
+  Color maleCard = inactiveReusableCardColour;
+  Color femaleCard = inactiveReusableCardColour;
+
+//  we will change the background colour of the gender cards based on the entered gender
+//  1 - male, 2- female
+
+  void updateCardColour(int gender) {
+    if (gender == 1) {
+      if (maleCard == inactiveReusableCardColour) {
+        maleCard = activeReusableCardColour;
+        femaleCard = inactiveReusableCardColour;
+      } else {
+        maleCard = inactiveReusableCardColour;
+      }
+    }
+    if (gender == 2) {
+      {
+        if (femaleCard == inactiveReusableCardColour) {
+          femaleCard = activeReusableCardColour;
+          maleCard = inactiveReusableCardColour;
+        } else {
+          femaleCard = inactiveReusableCardColour;
+        }
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,20 +63,34 @@ class _InputPageState extends State<InputPage> {
               child: Row(
                 children: <Widget>[
                   Expanded(
-                    child: ReusableCard(
-                      colour: Color(reusableCardBackgroundColour),
-                      cardChild: IconContent(
-                        icon: FontAwesomeIcons.mars,
-                        iconLabel: 'MALE',
+                    child: GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          updateCardColour(1);
+                        });
+                      },
+                      child: ReusableCard(
+                        colour: maleCard,
+                        cardChild: IconContent(
+                          icon: FontAwesomeIcons.mars,
+                          iconLabel: 'MALE',
+                        ),
                       ),
                     ),
                   ),
                   Expanded(
-                    child: ReusableCard(
-                      colour: Color(reusableCardBackgroundColour),
-                      cardChild: IconContent(
-                        icon: FontAwesomeIcons.venus,
-                        iconLabel: 'FEMALE',
+                    child: GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          updateCardColour(2);
+                        });
+                      },
+                      child: ReusableCard(
+                        colour: femaleCard,
+                        cardChild: IconContent(
+                          icon: FontAwesomeIcons.venus,
+                          iconLabel: 'FEMALE',
+                        ),
                       ),
                     ),
                   ),
@@ -56,22 +98,26 @@ class _InputPageState extends State<InputPage> {
               ),
             ), //ROW 1
             Expanded(
-              child: ReusableCard(colour: Color(reusableCardBackgroundColour)),
+              child: ReusableCard(colour: activeReusableCardColour),
             ), //ROW 2
             Expanded(
               child: Row(
                 children: <Widget>[
                   Expanded(
-                      child: ReusableCard(
-                          colour: Color(reusableCardBackgroundColour))),
+                    child: ReusableCard(
+                      colour: activeReusableCardColour,
+                    ),
+                  ),
                   Expanded(
-                      child: ReusableCard(
-                          colour: Color(reusableCardBackgroundColour)))
+                    child: ReusableCard(
+                      colour: activeReusableCardColour,
+                    ),
+                  ),
                 ],
               ),
             ), //ROW 3
             Container(
-              color: Color(bottomBarColour),
+              color: bottomBarColour,
               margin: EdgeInsets.only(
                 top: 10.0,
               ),
