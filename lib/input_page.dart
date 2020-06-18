@@ -1,5 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import 'icon_content.dart';
+import 'reusable_card_content.dart';
+
+const double bottomBarHeight = 55.0;
+const int reusableCardBackgroundColour = 0xFF1D1E33;
+const int bottomBarColour = 0xFFEB1555;
+
+const bottomBarText = Text(
+  'CALCULATE',
+  style: TextStyle(
+    fontSize: 14.0,
+    fontWeight: FontWeight.bold,
+  ),
+);
 
 class InputPage extends StatefulWidget {
   @override
@@ -10,70 +26,62 @@ class _InputPageState extends State<InputPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('BMI CALCULATOR'),
-      ),
-      body: Column(
-        children: <Widget>[
-          Expanded(
-            child: Row (
+        appBar: AppBar(
+          title: Text('BMI CALCULATOR'),
+        ),
+        body: Column(
+          children: <Widget>[
+            Expanded(
+              child: Row(
                 children: <Widget>[
                   Expanded(
-                    child : Container(
-                      margin: EdgeInsets.all(15.0),
-                      decoration: BoxDecoration(
-                        color: Color(0xFF1D1E33),     // as this is a default property of BoxDecoration widget, we cannot use it separately inside the Container widget.
-                        borderRadius: BorderRadius.circular(10.0),
+                    child: ReusableCard(
+                      colour: Color(reusableCardBackgroundColour),
+                      cardChild: IconContent(
+                        icon: FontAwesomeIcons.mars,
+                        iconLabel: 'MALE',
                       ),
                     ),
                   ),
                   Expanded(
-                    child : Container(
-                      margin: EdgeInsets.all(15.0),
-                      decoration: BoxDecoration(
-                        color: Color(0xFF1D1E33),     // as this is a default property of BoxDecoration widget, we cannot use it separately inside the Container widget.
-                        borderRadius: BorderRadius.circular(10.0),
+                    child: ReusableCard(
+                      colour: Color(reusableCardBackgroundColour),
+                      cardChild: IconContent(
+                        icon: FontAwesomeIcons.venus,
+                        iconLabel: 'FEMALE',
                       ),
                     ),
-                  )
+                  ),
                 ],
-            ),
-          ),
-          Expanded(
-            child : Container(
-              margin: EdgeInsets.all(15.0),
-              decoration: BoxDecoration(
-                color: Color(0xFF1D1E33),     // as this is a default property of BoxDecoration widget, we cannot use it separately inside the Container widget.
-                borderRadius: BorderRadius.circular(10.0),
               ),
-            ),
-          ),
-          Expanded(
-            child: Row (
-              children: <Widget>[
-                Expanded(
-                  child : Container(
-                    margin: EdgeInsets.all(15.0),
-                    decoration: BoxDecoration(
-                      color: Color(0xFF1D1E33),     // as this is a default property of BoxDecoration widget, we cannot use it separately inside the Container widget.
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child : Container(
-                    margin: EdgeInsets.all(15.0),
-                    decoration: BoxDecoration(
-                      color: Color(0xFF1D1E33),     // as this is a default property of BoxDecoration widget, we cannot use it separately inside the Container widget.
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                  ),
-                )
-              ],
-            ),
-          )
-        ],
-      )
-    );
+            ), //ROW 1
+            Expanded(
+              child: ReusableCard(colour: Color(reusableCardBackgroundColour)),
+            ), //ROW 2
+            Expanded(
+              child: Row(
+                children: <Widget>[
+                  Expanded(
+                      child: ReusableCard(
+                          colour: Color(reusableCardBackgroundColour))),
+                  Expanded(
+                      child: ReusableCard(
+                          colour: Color(reusableCardBackgroundColour)))
+                ],
+              ),
+            ), //ROW 3
+            Container(
+              color: Color(bottomBarColour),
+              margin: EdgeInsets.only(
+                top: 10.0,
+              ),
+              width: double.infinity,
+              height: bottomBarHeight,
+              child: Center(
+                child: bottomBarText,
+              ),
+            ) //BOTTOM BAR
+          ],
+        ));
   }
 }
