@@ -1,12 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
 
-const double heightOfSizedBox = 10.0;
-const double iconHeight = 55.0;
-const iconLabelStyle = TextStyle(
-  fontSize: 18.0,
-  color: Color(0xFF8D8E98),
-);
+import 'constants.dart';
 
 class IconContent extends StatelessWidget {
   final IconData icon;
