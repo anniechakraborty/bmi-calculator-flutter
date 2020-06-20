@@ -13,7 +13,7 @@ class ReusableCard extends StatelessWidget {
       onTap: onPressingCard,
       child: Container(
         child: cardChild,
-        margin: EdgeInsets.all(15.0),
+        margin: EdgeInsets.all(5.0),
         decoration: BoxDecoration(
           color:
               colour, // as this is a default property of BoxDecoration widget, we cannot use it separately inside the Container widget.

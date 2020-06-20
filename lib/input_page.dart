@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'constants.dart';
 import 'icon_content.dart';
 import 'reusable_card_content.dart';
+import 'round _card_buttons.dart';
 
 enum Gender {
   female,
@@ -19,6 +20,8 @@ class InputPage extends StatefulWidget {
 class _InputPageState extends State<InputPage> {
   Gender selectedGender;
   int height = 155;
+  int weight = 40;
+  int age = 13;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -125,11 +128,85 @@ class _InputPageState extends State<InputPage> {
                   Expanded(
                     child: ReusableCard(
                       colour: kActiveReusableCardColour,
+                      cardChild: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'WEIGHT',
+                            style: kIconLabelStyle,
+                          ),
+                          Text(
+                            weight.toString(),
+                            style: kNumberStyle,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              RoundCardButton(
+                                buttonChild: FontAwesomeIcons.minus,
+                                update: () {
+                                  setState(() {
+                                    weight = weight - 1;
+                                  });
+                                },
+                              ),
+                              SizedBox(
+                                width: 10.0,
+                              ),
+                              RoundCardButton(
+                                buttonChild: FontAwesomeIcons.plus,
+                                update: () {
+                                  setState(() {
+                                    weight = weight + 1;
+                                  });
+                                },
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   Expanded(
                     child: ReusableCard(
                       colour: kActiveReusableCardColour,
+                      cardChild: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'AGE',
+                            style: kIconLabelStyle,
+                          ),
+                          Text(
+                            age.toString(),
+                            style: kNumberStyle,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              RoundCardButton(
+                                buttonChild: FontAwesomeIcons.minus,
+                                update: () {
+                                  setState(() {
+                                    age = age - 1;
+                                  });
+                                },
+                              ),
+                              SizedBox(
+                                width: 10.0,
+                              ),
+                              RoundCardButton(
+                                buttonChild: FontAwesomeIcons.plus,
+                                update: () {
+                                  setState(() {
+                                    age = age + 1;
+                                  });
+                                },
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ],

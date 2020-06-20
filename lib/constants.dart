@@ -13,7 +13,7 @@ const kBottomBarText = Text(
   ),
 );
 const kNumberStyle = TextStyle(
-  fontSize: 50.0,
+  fontSize: 45.0,
   fontWeight: FontWeight.w800,
 );
 const double kMaxHumanHeight = 250.0, kMinHumanHeight = 50.0;
